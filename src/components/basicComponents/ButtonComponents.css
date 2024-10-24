@@ -1,0 +1,66 @@
+/* Button styling */
+.magic-button {
+  position: relative;
+  display: inline-flex;
+  height: 3rem;
+  overflow: hidden;
+  border-radius: 9999px; /* Full-rounded button */
+  padding: 1px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  outline: none;
+  /* Focus state with ring */
+  focus-visible: outline-none;
+  focus-visible: ring-2 ring-slate-400 ring-offset-2 ring-offset-slate-50;
+}
+
+/* Magic border spinning effect */
+.magic-border {
+  position: absolute;
+  inset: -1000%;
+  background: conic-gradient(from 90deg at 50% 50%, #e2cbff 0%, #393bb2 50%, #e2cbff 100%);
+  animation: spin 2s linear infinite;
+}
+
+/* Inner content for button */
+.magic-button-content {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #0f172a; /* Dark background */
+  padding: 0.75rem 1rem;
+  color: white; /* Set text color to white */
+  font-size: 0.875rem; /* Text size */
+  font-weight: 500;
+  backdrop-filter: blur(20px); /* Blur effect behind content */
+}
+
+/* Hover effect for zooming */
+.magic-button:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Animation for spinning border */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dark mode styling */
+@media (prefers-color-scheme: dark) {
+  .magic-button-content {
+    background-color: #1e293b; /* Softer dark background */
+    color: white; /* Ensure text color is white in dark mode */
+  }
+
+  .magic-border {
+    background: conic-gradient(from 90deg at 50% 50%, #e2cbff 0%, #64748b 50%, #e2cbff 100%);
+  }
+}
