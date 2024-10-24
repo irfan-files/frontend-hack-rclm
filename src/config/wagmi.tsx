@@ -1,13 +1,13 @@
 import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { http } from "wagmi";
-import { baseSepolia } from "wagmi/chains";
+import { sepolia } from "wagmi/chains";
 export const config = getDefaultConfig({
   appName: "Creator Hub",
   projectId: "YOUR_PROJECT_ID",
-  chains: [baseSepolia],
+  chains: [sepolia],
   transports: {
-    [baseSepolia.id]: http(
-      "https://base-sepolia.g.alchemy.com/v2/FGE7dw4IyA3IcrGDZG-7bpDWpclk61H4"
+    [sepolia.id]: http(
+      "https://eth-sepolia.g.alchemy.com/v2/wShy1g0XVLg-h-j1n-COZadp0r4Vlhwz"
     ),
   },
 });
