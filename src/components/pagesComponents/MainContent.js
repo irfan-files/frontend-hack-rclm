@@ -2,12 +2,8 @@ import React from "react";
 import "./MainContent.css";
 import { Link } from "react-router-dom";
 
-// const handleLogin = () => {
-//   window.location.href = `${process.env.REACT_APP_BACKEND_URL}/auth`;
-// };
-
-const handleMenu = () => {
-  window.location.href = `/Menu`;
+const handleLogin = () => {
+  window.location.href = `${process.env.REACT_APP_BACKEND_URL}/auth`;
 };
 
 const MainContent = () => {
@@ -38,14 +34,15 @@ const MainContent = () => {
 
         <h2 className="flex flex-wrap gap-3 justify-center items-center text-7xl font-medium tracking-tighter leading-snug text-center text-white whitespace-nowrap max-md:max-w-full max-md:text-4xl">
           <span className="self-stretch my-auto max-md:text-4xl">to</span>
-          <span className="gap-2.5 self-stretch px-3 py-0 my-auto text-gray-900 bg-blue-400 rounded-3xl min-w-[240px] max-md:text-4xl hover:bg-blue-300 transition-colors">
+          <span className="gap-2.5 self-stretch px-0 py-0 my-auto text-gray-900 bg-blue-400 rounded-3xl min-w-[240px] max-md:text-4xl hover:bg-blue-300 transition-colors text-center">
             onchain
           </span>
+
           <span className="self-stretch my-auto max-md:text-4xl">economy</span>
         </h2>
         <br />
         <button
-          onClick={handleMenu}
+          onClick={handleLogin}
           className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-gray-900 transform transition-transform duration-300 hover:scale-110"
         >
           <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#3B82F6_0%,#1E40AF_50%,#3B82F6_100%)]" />

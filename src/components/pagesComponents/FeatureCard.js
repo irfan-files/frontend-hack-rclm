@@ -1,14 +1,14 @@
 import React from "react";
 
-function StepCard({ icon, title, description }) {
+const FeatureCard = ({ icon, title, description }) => {
   return (
     <article className="flex flex-col p-5 rounded-xl shadow-2xl min-w-[240px] w-[343px]">
-      <div className="flex gap-2.5 items-center w-11">
+      <div className="flex gap-2.5 items-center w-[42px]">
         <img
           loading="lazy"
           src={icon}
-          alt=""
-          className="object-contain self-stretch my-auto w-11 aspect-square"
+          alt={title || "Feature icon"}
+          className="object-contain self-stretch my-auto aspect-square w-[42px]"
         />
       </div>
       <div className="flex flex-col mt-6 w-full">
@@ -21,6 +21,6 @@ function StepCard({ icon, title, description }) {
       </div>
     </article>
   );
-}
+};
 
-export default StepCard;
+export default FeatureCard;

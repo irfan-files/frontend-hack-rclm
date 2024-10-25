@@ -77,11 +77,11 @@ function App() {
                       />
                       <Route path="/terms" element={<TermsOfService />} />
                     </Routes>
-                    <Footer />
                   </div>
                 }
               />
             </Routes>
+            <Footer />
           </Router>
         </RainbowKitProvider>
       </WagmiConfig>
