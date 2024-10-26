@@ -3,11 +3,11 @@ import { http } from "wagmi";
 import { sepolia } from "wagmi/chains";
 export const config = getDefaultConfig({
   appName: "Creator Hub",
-  projectId: "YOUR_PROJECT_ID",
+  projectId: "001",
   chains: [sepolia],
   transports: {
     [sepolia.id]: http(
-      "https://eth-sepolia.g.alchemy.com/v2/wShy1g0XVLg-h-j1n-COZadp0r4Vlhwz"
+      "https://eth-sepolia.g.alchemy.com/v2/FGE7dw4IyA3IcrGDZG-7bpDWpclk61H4"
     ),
   },
 });
