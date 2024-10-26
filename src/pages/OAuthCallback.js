@@ -80,7 +80,7 @@ const OAuthCallback = () => {
     return (
       <div>
         <section class="flex flex-col px-16 pt-14 pb-28 max-md:px-5 max-md:pb-24">
-          <header class="flex overflow-hidden flex-col justify-center py-6 w-full text-black border-b-2 border-stone-300 max-md:max-w-full">
+          <header class="flex overflow-hidden flex-col justify-center py-6 w-full text-white border-b-2 border-stone-300 max-md:max-w-full">
             <div class="flex gap-6 items-end w-full max-md:max-w-full">
               <div class="flex flex-col flex-1 shrink w-full basis-0 min-w-[240px] max-md:max-w-full">
                 <h1 class="text-2xl font-bold leading-snug max-md:max-w-full">
@@ -108,7 +108,7 @@ const OAuthCallback = () => {
             </div>
             <div class="flex flex-col flex-1 shrink justify-center basis-0 min-w-[240px] max-md:max-w-full">
               <div class="flex flex-col w-full max-md:max-w-full">
-                {/* <h2 class="text-5xl font-bold tracking-tighter leading-none text-black max-md:max-w-full max-md:text-4xl"> */}
+                {/* <h2 class="text-5xl font-bold tracking-tighter leading-none text-white max-md:max-w-full max-md:text-4xl"> */}
                 {}
                 <div className="flex flex-row gap-2">
                   <Basenames address={account.addresses?.[0]} />
@@ -128,7 +128,7 @@ const OAuthCallback = () => {
                       type="text"
                       value={channelInfo.channelTitle}
                       readonly
-                      class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-black whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
+                      class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-white whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
                     />
                   </div>
                   <div class="flex mt-3 w-full max-w-xs bg-gray-200 rounded border-gray-300 border-solid shadow-sm border-[length:var(--sds-size-stroke-border)]">
@@ -143,7 +143,7 @@ const OAuthCallback = () => {
                       type="text"
                       value={channelInfo.channelId}
                       readonly
-                      class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-black whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
+                      class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-white whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
                     />
                   </div>
                 </div>
