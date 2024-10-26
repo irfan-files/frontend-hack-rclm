@@ -16,7 +16,7 @@ const OAuthCallback = () => {
   const location = useLocation();
   const { isConnected } = useAccount();
   const account = useAccount();
-  const[channelSubs, setChannelSubs] = useState(null);
+  const [channelSubs, setChannelSubs] = useState(null);
   const [channelViews, setChannelViews] = useState(null);
   const [channelVideo, setChannelVideos] = useState(null);
   const [channelPublishedAt, setChannelPublishedAt] = useState(null);
@@ -34,7 +34,7 @@ const OAuthCallback = () => {
     // Proof Reclaim
     const proofData = queryParams.get("proofData");
     const proofSend = JSON.parse(decodeURIComponent(proofData));
-    
+
     // Information for badge card
     const channelSubs = queryParams.get("channel_subscriber");
     const channelView = queryParams.get("channel_view_count");
@@ -42,8 +42,8 @@ const OAuthCallback = () => {
     const channelPublishedAt = queryParams.get("channel_published_at");
 
     const date = new Date(channelPublishedAt);
-    const options = { year: 'numeric', month: 'short', day: 'numeric' };
-    const formattedDate = date.toLocaleDateString('en-US', options);
+    const options = { year: "numeric", month: "short", day: "numeric" };
+    const formattedDate = date.toLocaleDateString("en-US", options);
 
     if (
       accessToken &&
@@ -55,7 +55,6 @@ const OAuthCallback = () => {
       channelVideo &&
       channelView &&
       formattedDate
-
     ) {
       setChannelInfo({ channelId, channelTitle });
       setTokenURI(tokenURI);
@@ -89,7 +88,8 @@ const OAuthCallback = () => {
                 </h1>
                 <p class="mt-2 text-base max-md:max-w-full">
                   Review your channel status here! <br></br>
-                  The attribute bellow is just an information for creator, not include into attribute NFT for transparency! 
+                  The attribute bellow is just an information for creator, not
+                  include into attribute NFT for transparency!
                 </p>
               </div>
             </div>
@@ -160,6 +160,31 @@ const OAuthCallback = () => {
           </main>
         </section>
       </div>
+    );
+  } else {
+    return (
+      <motion.div
+        className="flex justify-center items-center h-screen"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div
+          className="text-center p-10 bg-gray-100 rounded-lg shadow-lg"
+          initial={{ scale: 0.8 }}
+          animate={{ scale: 1 }}
+          transition={{
+            type: "spring",
+            stiffness: 100,
+            damping: 10,
+          }}
+        >
+          <h2 className="text-2xl font-bold mb-4">Connect Your Wallet!</h2>
+          <p className="text-gray-700">
+            Please connect your wallet to proceed.
+          </p>
+        </motion.div>
+      </motion.div>
     );
   }
 };
