@@ -87,16 +87,50 @@ const OAuthCallback = () => {
               channelSubs={channelSubs || "N/A"}
               videoCount={channelVideo || "N/A"}
               videoViews={channelViews || "N/A"}
-              accountCreated={channelPublishedAt || "N/A"}
+              accountCreated={channelPublishedAt || "Please Connect Wallet"}
               imageURL={imageURL}
             />
           </div>
           <div className="flex flex-col flex-1 shrink justify-center basis-0 min-w-[240px] max-md:max-w-full">
             <div className="flex flex-col w-full max-md:max-w-full">
               <div className="flex flex-row gap-2 text-white">
-                <Basenames address={account.addresses?.[0] || "N/A"} />
+                <Basenames
+                  address={account.addresses?.[0] || "Please Connect Wallet"}
+                />
               </div>
               <hr className="mt-5 w-full h-px bg-gray-300 min-h-[1px] max-md:max-w-full" />
+              <div class="flex flex-col mt-5 w-80 max-w-full text-base">
+                <div class="flex w-full max-w-xs bg-gray-200 rounded border-gray-300 shadow-sm">
+                  <label
+                    for="channelName"
+                    class="self-start py-2.5 pr-3 pl-3.5 w-40 rounded-lg text-slate-600"
+                  >
+                    Channel Name
+                  </label>
+                  <input
+                    id="channelName"
+                    type="text"
+                    value={channelInfo.channelTitle}
+                    readonly
+                    class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-black whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
+                  />
+                </div>
+                <div class="flex mt-3 w-full max-w-xs bg-gray-200 rounded border-gray-300 border-solid shadow-sm border-[length:var(--sds-size-stroke-border)]">
+                  <label
+                    for="channelId"
+                    class="self-start py-2.5 pr-3 pl-3.5 w-40 rounded-lg text-slate-600"
+                  >
+                    Channel ID
+                  </label>
+                  <input
+                    id="channelId"
+                    type="text"
+                    value={channelInfo.channelId}
+                    readonly
+                    class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-black whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
+                  />
+                </div>
+              </div>
               {!mintedTokenId ? (
                 <MintNFTButton
                   proofData={proofDataObject}
@@ -109,30 +143,6 @@ const OAuthCallback = () => {
           </div>
         </main>
       </section>
-      {!isConnected && (
-        <motion.div
-          className="flex justify-center items-center mt-10"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.div
-            className="text-center p-10 bg-gray-100 rounded-lg shadow-lg"
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            transition={{
-              type: "spring",
-              stiffness: 100,
-              damping: 10,
-            }}
-          >
-            <h2 className="text-2xl font-bold mb-4">Connect Your Wallet!</h2>
-            <p className="text-gray-700">
-              Connect your wallet to mint NFTs or interact further.
-            </p>
-          </motion.div>
-        </motion.div>
-      )}
     </div>
   );
 };
