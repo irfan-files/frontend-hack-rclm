@@ -39,6 +39,7 @@ const MintNFTButton = ({ proofData, tokenURI }) => {
     };
 
   const { data: hash, error, isPending, writeContract } = useWriteContract();
+  console.log(error)
 
   const { isLoading: isConfirming, isSuccess: isConfirmed } =
     useWaitForTransactionReceipt({
@@ -51,7 +52,7 @@ const MintNFTButton = ({ proofData, tokenURI }) => {
 
     try {
       await writeContract({
-        address: '0x7D9a1CbBB8355f9068d4c73977b546dd6da4D3B4',
+        address: '0x7FF8Dfeda2966d9aD058b06900B9181D8d3AF66b',
         abi: abi,
         functionName: "mintAccount",
         args: [proofData, tokenURI],
@@ -75,18 +76,19 @@ const MintNFTButton = ({ proofData, tokenURI }) => {
       {hash && (
         <div>
           Transaction Hash:{" "}
-          <a href={`https://sepolia.basescan.org/tx/${hash}`} class="text-lime-400">
-            {`https://sepolia.basescan.org/tx/${hash}`}
+          <a href={`https://sepolia.etherscan.io/tx/${hash}`} class="text-lime-400">
+            {`https://sepolia.etherscan.io/tx/${hash}`}
           </a>
         </div>
       )}
       {error && (
-        <div>
-          Error:{" "}
-          {error instanceof BaseError ? error.shortMessage : error.message}
+        <div className="p-4 border border-red-500 rounded bg-red-100 text-red-600 mb-4 font-bold">
+          {error instanceof BaseError 
+            ? error.shortMessage.match(/reason:\s*(.*$)/)[1] 
+            : error.shortMessage.match(/reason:\s*(.*$)/)[1]}
         </div>
       )}
-      <p></p>
+      
     </form>
   );
 };
