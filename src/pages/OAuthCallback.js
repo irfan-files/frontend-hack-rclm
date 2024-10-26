@@ -81,7 +81,7 @@ const OAuthCallback = () => {
     return (
       <div>
         <section class="flex flex-col px-16 pt-14 pb-28 max-md:px-5 max-md:pb-24 bg-gray-100">
-          <header class="flex overflow-hidden flex-col justify-center py-6 w-full text-white border-b-2 border-stone-300 max-md:max-w-full">
+          <header class="flex overflow-hidden flex-col justify-center py-6 w-full text-black border-b-2 border-stone-300 max-md:max-w-full">
             <div class="flex gap-6 items-end w-full max-md:max-w-full">
               <div class="flex flex-col flex-1 shrink w-full basis-0 min-w-[240px] max-md:max-w-full">
                 <h1 class="text-2xl font-bold leading-snug max-md:max-w-full">
