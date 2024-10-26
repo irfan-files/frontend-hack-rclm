@@ -111,7 +111,7 @@ const OAuthCallback = () => {
               <div class="flex flex-col w-full max-md:max-w-full">
                 {/* <h2 class="text-5xl font-bold tracking-tighter leading-none text-white max-md:max-w-full max-md:text-4xl"> */}
                 {}
-                <div className="flex flex-row gap-2">
+                <div className="flex flex-row gap-2 text-white">
                   <Basenames address={account.addresses?.[0]} />
                   {/* </h2> */}
                 </div>
@@ -129,7 +129,7 @@ const OAuthCallback = () => {
                       type="text"
                       value={channelInfo.channelTitle}
                       readonly
-                      class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-white whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
+                      class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-black whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
                     />
                   </div>
                   <div class="flex mt-3 w-full max-w-xs bg-gray-200 rounded border-gray-300 border-solid shadow-sm border-[length:var(--sds-size-stroke-border)]">
@@ -144,7 +144,7 @@ const OAuthCallback = () => {
                       type="text"
                       value={channelInfo.channelId}
                       readonly
-                      class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-white whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
+                      class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-black whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
                     />
                   </div>
                 </div>
