@@ -84,8 +84,8 @@ const MintNFTButton = ({ proofData, tokenURI }) => {
       {error && (
         <div className="p-4 border border-red-500 rounded bg-red-100 text-red-600 mb-4 font-bold">
           {error instanceof BaseError 
-            ? error.shortMessage.match(/reason:\s*(.*$)/)[1] 
-            : error.shortMessage.match(/reason:\s*(.*$)/)[1]}
+            ? error.shortMessage
+            : error.shortMessage}
         </div>
       )}
       
