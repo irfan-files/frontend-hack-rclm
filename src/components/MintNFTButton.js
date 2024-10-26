@@ -7,7 +7,7 @@ import {
 } from "wagmi";
 import abi from "../abiMintingAccount.json";
 import { useState } from "react";
-import { baseSepolia } from "viem/chains";
+import { sepolia } from "viem/chains";
 import { switchChain } from '@wagmi/core'
 
 const MintNFTButton = ({ proofData, tokenURI }) => {
@@ -20,8 +20,8 @@ const MintNFTButton = ({ proofData, tokenURI }) => {
       try {
         // Wagmi switch chain - for smart wallet
         try {
-          if (account.chainId !== baseSepolia.id) {
-            await switchChain({ chainId: baseSepolia.id });
+          if (account.chainId !== sepolia.id) {
+            await switchChain({ chainId: sepolia.id });
           }
         } catch {
           // Ether switch chain - for coinbase wallet
@@ -51,11 +51,11 @@ const MintNFTButton = ({ proofData, tokenURI }) => {
 
     try {
       await writeContract({
-        address: '0x66c32B94492903037B398025b5d9F1F5c1BFB7Af',
+        address: '0x7D9a1CbBB8355f9068d4c73977b546dd6da4D3B4',
         abi: abi,
         functionName: "mintAccount",
         args: [proofData, tokenURI],
-        chainId: baseSepolia.id
+        chainId: sepolia.id
       });
     } catch (err) {
       console.error("Failed to mint NFT:", err);
