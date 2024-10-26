@@ -8,7 +8,7 @@ import { useAccount } from "wagmi";
 import { motion } from "framer-motion";
 
 const OAuthCallback = () => {
-  const [channelInfo, setChannelInfo] = useState(null);
+  const [channelInfo, setChannelInfo] = useState({});
   const [tokenURI, setTokenURI] = useState(null);
   const [proofDataObject, setProofDataObject] = useState(null);
   const [error, setError] = useState(null);
@@ -24,52 +24,46 @@ const OAuthCallback = () => {
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const accessToken = queryParams.get("access_token");
-    const channelId = queryParams.get("channel_id");
-    const tokenURI = queryParams.get("token_uri");
-    const channelTitle = queryParams.get("channel_title");
-    const imageURL = queryParams.get("image_url");
+
+    const channelData = {
+      channelId: queryParams.get("channel_id"),
+      channelTitle: queryParams.get("channel_title"),
+      channelSubs: queryParams.get("channel_subscriber"),
+      channelViews: queryParams.get("channel_view_count"),
+      channelVideo: queryParams.get("channel_total_video"),
+      channelPublishedAt: queryParams.get("channel_published_at"),
+      tokenURI: queryParams.get("token_uri"),
+      imageURL: queryParams.get("image_url"),
+    };
+
     const proofData = queryParams.get("proofData");
-    const proofSend = JSON.parse(decodeURIComponent(proofData));
-    const channelSubs = queryParams.get("channel_subscriber");
-    const channelView = queryParams.get("channel_view_count");
-    const channelVideo = queryParams.get("channel_total_video");
-    const channelPublishedAt = queryParams.get("channel_published_at");
+    const proofSend = proofData && JSON.parse(decodeURIComponent(proofData));
 
-    const date = new Date(channelPublishedAt);
-    const options = { year: "numeric", month: "short", day: "numeric" };
-    const formattedDate = date.toLocaleDateString("en-US", options);
+    const formattedDate = channelData.channelPublishedAt
+      ? new Date(channelData.channelPublishedAt).toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
+      : "N/A";
 
-    if (
-      accessToken &&
-      channelId &&
-      tokenURI &&
-      channelTitle &&
-      imageURL &&
-      channelSubs &&
-      channelVideo &&
-      channelView &&
-      formattedDate
-    ) {
-      setChannelInfo({ channelId, channelTitle });
-      setTokenURI(tokenURI);
+    if (channelData.channelId && channelData.channelTitle) {
+      setChannelInfo(channelData);
+      setTokenURI(channelData.tokenURI);
       setProofDataObject(proofSend);
-      setImageURL(imageURL);
-      setChannelSubs(channelSubs);
-      setChannelVideos(channelVideo);
-      setChannelViews(channelView);
+      setImageURL(channelData.imageURL);
+      setChannelSubs(channelData.channelSubs);
+      setChannelVideos(channelData.channelVideo);
+      setChannelViews(channelData.channelViews);
       setChannelPublishedAt(formattedDate);
     } else {
-      setError("Required query parameters are missing.");
+      setError("Some required channel data is missing.");
     }
   }, [location]);
 
-  if (error) {
-    return <div className="text-red-500">{error}</div>;
-  }
-
   return (
     <div>
+      {error && <div className="text-red-500">{error}</div>}
       <section className="flex flex-col px-16 pt-14 pb-28 max-md:px-5 max-md:pb-24 bg-gray-100">
         <header className="flex overflow-hidden flex-col justify-center py-6 w-full text-black border-b-2 border-stone-300 max-md:max-w-full">
           <div className="flex gap-6 items-end w-full max-md:max-w-full">
@@ -79,8 +73,8 @@ const OAuthCallback = () => {
               </h1>
               <p className="mt-2 text-base max-md:max-w-full">
                 Review your channel status here! <br />
-                The attribute below is just information for the creator, not
-                included as an NFT attribute for transparency.
+                The information below is just for your reference and not part of
+                the NFT attributes.
               </p>
             </div>
           </div>
@@ -88,19 +82,19 @@ const OAuthCallback = () => {
         <main className="flex overflow-hidden flex-wrap gap-10 px-8 py-12 w-full max-md:px-5 max-md:max-w-full">
           <div className="flex flex-col gap-12 items-center self-start bg-gray-100 rounded-lg min-w-[240px] w-[375px]">
             <ProfileCard
-              channelName={channelInfo?.channelTitle}
-              channelId={channelInfo?.channelId}
-              channelSubs={channelSubs}
-              videoCount={channelVideo}
-              videoViews={channelViews}
-              accountCreated={channelPublishedAt}
+              channelName={channelInfo.channelTitle || "N/A"}
+              channelId={channelInfo.channelId || "N/A"}
+              channelSubs={channelSubs || "N/A"}
+              videoCount={channelVideo || "N/A"}
+              videoViews={channelViews || "N/A"}
+              accountCreated={channelPublishedAt || "N/A"}
               imageURL={imageURL}
             />
           </div>
           <div className="flex flex-col flex-1 shrink justify-center basis-0 min-w-[240px] max-md:max-w-full">
             <div className="flex flex-col w-full max-md:max-w-full">
               <div className="flex flex-row gap-2 text-white">
-                <Basenames address={account.addresses?.[0]} />
+                <Basenames address={account.addresses?.[0] || "N/A"} />
               </div>
               <hr className="mt-5 w-full h-px bg-gray-300 min-h-[1px] max-md:max-w-full" />
               {!mintedTokenId ? (
@@ -115,7 +109,6 @@ const OAuthCallback = () => {
           </div>
         </main>
       </section>
-
       {!isConnected && (
         <motion.div
           className="flex justify-center items-center mt-10"
@@ -135,7 +128,7 @@ const OAuthCallback = () => {
           >
             <h2 className="text-2xl font-bold mb-4">Connect Your Wallet!</h2>
             <p className="text-gray-700">
-              Please connect your wallet to mint NFTs or interact further.
+              Connect your wallet to mint NFTs or interact further.
             </p>
           </motion.div>
         </motion.div>
