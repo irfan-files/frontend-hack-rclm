@@ -5,6 +5,7 @@ import DisplayNFT from "../components/DisplayNFT";
 import ProfileCard from "../components/basicComponents/ProfileCard";
 import { Basenames } from "../components/GetBasenameMint";
 import { useAccount } from "wagmi";
+import { motion } from "framer-motion";
 
 const OAuthCallback = () => {
   const [channelInfo, setChannelInfo] = useState(null);
