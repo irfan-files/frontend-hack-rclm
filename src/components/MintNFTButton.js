@@ -25,10 +25,10 @@ const MintNFTButton = ({ proofData, tokenURI }) => {
           }
         } catch {
           // Ether switch chain - for coinbase wallet
-          if (account.chainId !== 84532) {
+          if (account.chainId !== 11155111) {
                   await window.ethereum.request({
                     method: "wallet_switchEthereumChain",
-                    params: [{ chainId: "0x14a34" }],
+                    params: [{ chainId: "0xaa36a7" }],
                   });
                 }
         }
