@@ -28,15 +28,9 @@ const OAuthCallback = () => {
     const channelId = queryParams.get("channel_id");
     const tokenURI = queryParams.get("token_uri");
     const channelTitle = queryParams.get("channel_title");
-
-    // Get image url
     const imageURL = queryParams.get("image_url");
-
-    // Proof Reclaim
     const proofData = queryParams.get("proofData");
     const proofSend = JSON.parse(decodeURIComponent(proofData));
-
-    // Information for badge card
     const channelSubs = queryParams.get("channel_subscriber");
     const channelView = queryParams.get("channel_view_count");
     const channelVideo = queryParams.get("channel_total_video");
@@ -74,149 +68,28 @@ const OAuthCallback = () => {
     return <div className="text-red-500">{error}</div>;
   }
 
-  if (!channelInfo) {
-    return <div>Loading...</div>;
-  }
-  // if (isConnected) {
-  //   return (
-  //     <div>
-  //       <section class="flex flex-col px-16 pt-14 pb-28 max-md:px-5 max-md:pb-24 bg-gray-100">
-  //         <header class="flex overflow-hidden flex-col justify-center py-6 w-full text-black border-b-2 border-stone-300 max-md:max-w-full">
-  //           <div class="flex gap-6 items-end w-full max-md:max-w-full">
-  //             <div class="flex flex-col flex-1 shrink w-full basis-0 min-w-[240px] max-md:max-w-full">
-  //               <h1 class="text-2xl font-bold leading-snug max-md:max-w-full">
-  //                 Channel Detail
-  //               </h1>
-  //               <p class="mt-2 text-base max-md:max-w-full">
-  //                 Review your channel status here! <br></br>
-  //                 The attribute bellow is just an information for creator, not
-  //                 include into attribute NFT for transparency!
-  //               </p>
-  //             </div>
-  //           </div>
-  //         </header>
-  //         <main class="flex overflow-hidden flex-wrap gap-10 px-8 py-12 w-full max-md:px-5 max-md:max-w-full">
-  //           <div class="flex flex-col gap-12 items-center self-start bg-gray-100 rounded-lg min-w-[240px] w-[375px]">
-  //             <ProfileCard
-  //               channelName={channelInfo.channelTitle}
-  //               channelId={channelInfo.channelId}
-  //               channelSubs={channelSubs}
-  //               videoCount={channelVideo}
-  //               videoViews={channelViews}
-  //               accountCreated={channelPublishedAt}
-  //               imageURL={imageURL}
-  //             />
-  //           </div>
-  //           <div class="flex flex-col flex-1 shrink justify-center basis-0 min-w-[240px] max-md:max-w-full">
-  //             <div class="flex flex-col w-full max-md:max-w-full">
-  //               {/* <h2 class="text-5xl font-bold tracking-tighter leading-none text-white max-md:max-w-full max-md:text-4xl"> */}
-  //               {}
-  //               <div className="flex flex-row gap-2 text-white">
-  //                 <Basenames address={account.addresses?.[0]} />
-  //                 {/* </h2> */}
-  //               </div>
-  //               <hr class="mt-5 w-full h-px bg-gray-300 min-h-[1px] max-md:max-w-full" />
-  //               <div class="flex flex-col mt-5 w-80 max-w-full text-base">
-  //                 <div class="flex w-full max-w-xs bg-gray-200 rounded border-gray-300 shadow-sm">
-  //                   <label
-  //                     for="channelName"
-  //                     class="self-start py-2.5 pr-3 pl-3.5 w-40 rounded-lg text-slate-600"
-  //                   >
-  //                     Channel Name
-  //                   </label>
-  //                   <input
-  //                     id="channelName"
-  //                     type="text"
-  //                     value={channelInfo.channelTitle}
-  //                     readonly
-  //                     class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-black whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
-  //                   />
-  //                 </div>
-  //                 <div class="flex mt-3 w-full max-w-xs bg-gray-200 rounded border-gray-300 border-solid shadow-sm border-[length:var(--sds-size-stroke-border)]">
-  //                   <label
-  //                     for="channelId"
-  //                     class="self-start py-2.5 pr-3 pl-3.5 w-40 rounded-lg text-slate-600"
-  //                   >
-  //                     Channel ID
-  //                   </label>
-  //                   <input
-  //                     id="channelId"
-  //                     type="text"
-  //                     value={channelInfo.channelId}
-  //                     readonly
-  //                     class="overflow-hidden flex-1 shrink gap-2 self-stretch py-2.5 pr-3 pl-3.5 h-full text-black whitespace-nowrap bg-white rounded-none border border-gray-300 border-solid"
-  //                   />
-  //                 </div>
-  //               </div>
-  //             </div>
-  //             {!mintedTokenId ? (
-  //               <MintNFTButton
-  //                 proofData={proofDataObject}
-  //                 tokenURI={tokenURI}
-  //               />
-  //             ) : (
-  //               <DisplayNFT tokenId={mintedTokenId} imageURL={imageURL} />
-  //             )}
-  //           </div>
-  //         </main>
-  //       </section>
-  //     </div>
-  //   );
-  // } else {
-  //   return (
-  //     <section class="flex flex-col px-16 pt-14 pb-28 max-md:px-5 max-md:pb-24 bg-gray-100">
-  //       <motion.div
-  //         className="flex justify-center items-center h-screen"
-  //         initial={{ opacity: 0, y: 50 }}
-  //         animate={{ opacity: 1, y: 0 }}
-  //         transition={{ duration: 0.5 }}
-  //       >
-  //         <motion.div
-  //           className="text-center p-10 bg-gray-100 rounded-lg shadow-lg"
-  //           initial={{ scale: 0.8 }}
-  //           animate={{ scale: 1 }}
-  //           transition={{
-  //             type: "spring",
-  //             stiffness: 100,
-  //             damping: 10,
-  //           }}
-  //         >
-  //           <h2 className="text-2xl font-bold mb-4">Connect Your Wallet!</h2>
-  //           <p className="text-gray-700">
-  //             Please connect your wallet to proceed.
-  //           </p>
-  //         </motion.div>
-  //       </motion.div>
-  //     </section>
-  //   );
-  // }
-
   return (
     <div>
-      <section class="flex flex-col px-16 pt-14 pb-28 max-md:px-5 max-md:pb-24 bg-gray-100">
-        {/* Header Section */}
-        <header class="flex overflow-hidden flex-col justify-center py-6 w-full text-black border-b-2 border-stone-300 max-md:max-w-full">
-          <div class="flex gap-6 items-end w-full max-md:max-w-full">
-            <div class="flex flex-col flex-1 shrink w-full basis-0 min-w-[240px] max-md:max-w-full">
-              <h1 class="text-2xl font-bold leading-snug max-md:max-w-full">
+      <section className="flex flex-col px-16 pt-14 pb-28 max-md:px-5 max-md:pb-24 bg-gray-100">
+        <header className="flex overflow-hidden flex-col justify-center py-6 w-full text-black border-b-2 border-stone-300 max-md:max-w-full">
+          <div className="flex gap-6 items-end w-full max-md:max-w-full">
+            <div className="flex flex-col flex-1 shrink w-full basis-0 min-w-[240px] max-md:max-w-full">
+              <h1 className="text-2xl font-bold leading-snug max-md:max-w-full">
                 Channel Detail
               </h1>
-              <p class="mt-2 text-base max-md:max-w-full">
+              <p className="mt-2 text-base max-md:max-w-full">
                 Review your channel status here! <br />
-                The attribute below is just information for creators, not
-                included in the NFT attributes for transparency.
+                The attribute below is just information for the creator, not
+                included as an NFT attribute for transparency.
               </p>
             </div>
           </div>
         </header>
-
-        {/* Main Content Section */}
-        <main class="flex overflow-hidden flex-wrap gap-10 px-8 py-12 w-full max-md:px-5 max-md:max-w-full">
-          {/* Profile Card */}
-          <div class="flex flex-col gap-12 items-center self-start bg-gray-100 rounded-lg min-w-[240px] w-[375px]">
+        <main className="flex overflow-hidden flex-wrap gap-10 px-8 py-12 w-full max-md:px-5 max-md:max-w-full">
+          <div className="flex flex-col gap-12 items-center self-start bg-gray-100 rounded-lg min-w-[240px] w-[375px]">
             <ProfileCard
-              channelName={channelInfo.channelTitle}
-              channelId={channelInfo.channelId}
+              channelName={channelInfo?.channelTitle}
+              channelId={channelInfo?.channelId}
               channelSubs={channelSubs}
               videoCount={channelVideo}
               videoViews={channelViews}
@@ -224,98 +97,51 @@ const OAuthCallback = () => {
               imageURL={imageURL}
             />
           </div>
-
-          {/* Channel Metadata & NFT Section */}
-          <div class="flex flex-col flex-1 shrink justify-center basis-0 min-w-[240px] max-md:max-w-full">
-            <div class="flex flex-col w-full max-md:max-w-full">
+          <div className="flex flex-col flex-1 shrink justify-center basis-0 min-w-[240px] max-md:max-w-full">
+            <div className="flex flex-col w-full max-md:max-w-full">
               <div className="flex flex-row gap-2 text-white">
                 <Basenames address={account.addresses?.[0]} />
               </div>
-              <hr class="mt-5 w-full h-px bg-gray-300 min-h-[1px] max-md:max-w-full" />
-
-              <div class="flex flex-col mt-5 w-80 max-w-full text-base">
-                {/* Channel Name Input */}
-                <div class="flex w-full max-w-xs bg-gray-200 rounded border-gray-300 shadow-sm">
-                  <label
-                    for="channelName"
-                    class="self-start py-2.5 pr-3 pl-3.5 w-40 rounded-lg text-slate-600"
-                  >
-                    Channel Name
-                  </label>
-                  <input
-                    id="channelName"
-                    type="text"
-                    value={channelInfo.channelTitle}
-                    readonly
-                    class="overflow-hidden flex-1 shrink py-2.5 pr-3 pl-3.5 h-full text-black whitespace-nowrap bg-white border border-gray-300"
-                  />
-                </div>
-
-                {/* Channel ID Input */}
-                <div class="flex mt-3 w-full max-w-xs bg-gray-200 rounded border-gray-300 shadow-sm">
-                  <label
-                    for="channelId"
-                    class="self-start py-2.5 pr-3 pl-3.5 w-40 rounded-lg text-slate-600"
-                  >
-                    Channel ID
-                  </label>
-                  <input
-                    id="channelId"
-                    type="text"
-                    value={channelInfo.channelId}
-                    readonly
-                    class="overflow-hidden flex-1 shrink py-2.5 pr-3 pl-3.5 h-full text-black whitespace-nowrap bg-white border border-gray-300"
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* NFT Minting Section */}
-            {isConnected ? (
-              !mintedTokenId ? (
+              <hr className="mt-5 w-full h-px bg-gray-300 min-h-[1px] max-md:max-w-full" />
+              {!mintedTokenId ? (
                 <MintNFTButton
                   proofData={proofDataObject}
                   tokenURI={tokenURI}
                 />
               ) : (
                 <DisplayNFT tokenId={mintedTokenId} imageURL={imageURL} />
-              )
-            ) : (
-              <div className="flex flex-col items-center mt-10">
-                <h2 className="text-xl font-bold mb-2 text-gray-700">
-                  Connect Your Wallet!
-                </h2>
-                <p className="text-gray-500 mb-4">
-                  Please connect your wallet to mint your NFT.
-                </p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         </main>
-
-        {/* Wallet Connect Prompt (if not connected) */}
-        {!isConnected && (
-          <motion.div
-            className="flex justify-center items-center h-screen"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div
-              className="text-center p-10 bg-gray-100 rounded-lg shadow-lg"
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ type: "spring", stiffness: 100, damping: 10 }}
-            >
-              <h2 className="text-2xl font-bold mb-4">Connect Your Wallet!</h2>
-              <p className="text-gray-700">
-                Please connect your wallet to proceed.
-              </p>
-            </motion.div>
-          </motion.div>
-        )}
       </section>
+
+      {!isConnected && (
+        <motion.div
+          className="flex justify-center items-center mt-10"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.div
+            className="text-center p-10 bg-gray-100 rounded-lg shadow-lg"
+            initial={{ scale: 0.8 }}
+            animate={{ scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 100,
+              damping: 10,
+            }}
+          >
+            <h2 className="text-2xl font-bold mb-4">Connect Your Wallet!</h2>
+            <p className="text-gray-700">
+              Please connect your wallet to mint NFTs or interact further.
+            </p>
+          </motion.div>
+        </motion.div>
+      )}
     </div>
   );
 };
+
 export default OAuthCallback;
